@@ -1,1 +1,35 @@
-<p>header works!</p>
+<header class="fixed top-0 left-0 w-full bg-gradient-to-r from-purple-600 to-blue-600 shadow-lg z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      
+      <!-- Left: Profile Image & Name -->
+      <div class="flex items-center space-x-3">
+        <img src="/profile.jpeg" alt="Your Name" loading="lazy" class="w-12 h-12 rounded-full object-cover border-2 border-white">
+        <span class="text-white font-bold text-lg">Colby</span>
+      </div>
+
+      <!-- Center: Navigation Links -->
+      <nav class="hidden md:flex space-x-6">
+        <a href="#hero" class="text-white hover:text-orange-300 transition">Home</a>
+        <a href="#about" class="text-white hover:text-orange-300 transition">About</a>
+        <a href="#projects" class="text-white hover:text-orange-300 transition">Projects</a>
+        <a href="#contact" class="text-white hover:text-orange-300 transition">Contact</a>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-button" class="md:hidden text-white">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-purple-700 py-2">
+    <a href="#hero" class="block px-4 py-2 text-white hover:bg-purple-800">Home</a>
+    <a href="#about" class="block px-4 py-2 text-white hover:bg-purple-800">About</a>
+    <a href="#projects" class="block px-4 py-2 text-white hover:bg-purple-800">Projects</a>
+    <a href="#contact" class="block px-4 py-2 text-white hover:bg-purple-800">Contact</a>
+  </div>
+</header>
