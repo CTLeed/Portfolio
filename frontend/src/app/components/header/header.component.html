@@ -10,10 +10,10 @@
 
       <!-- Center: Navigation Links -->
       <nav class="hidden md:flex space-x-6">
-        <a href="#hero" class="text-white hover:text-orange-300 transition">Home</a>
-        <a href="#about" class="text-white hover:text-orange-300 transition">About</a>
-        <a href="#projects" class="text-white hover:text-orange-300 transition">Projects</a>
-        <a href="#contact" class="text-white hover:text-orange-300 transition">Contact</a>
+        <a href="#hero" [class.active]="activeSection === 'hero'">Home</a>
+        <a href="#about" [class.active]="activeSection === 'about'">About</a>
+        <a href="#projects" [class.active]="activeSection === 'projects'">Projects</a>
+        <a href="#contact" [class.active]="activeSection === 'contact'">Contact</a>
       </nav>
 
       <!-- Mobile Menu Button -->
@@ -27,9 +27,9 @@
 
   <!-- Mobile Menu -->
   <div id="mobile-menu" class="hidden md:hidden bg-purple-700 py-2">
-    <a href="#hero" class="block px-4 py-2 text-white hover:bg-purple-800">Home</a>
-    <a href="#about" class="block px-4 py-2 text-white hover:bg-purple-800">About</a>
-    <a href="#projects" class="block px-4 py-2 text-white hover:bg-purple-800">Projects</a>
-    <a href="#contact" class="block px-4 py-2 text-white hover:bg-purple-800">Contact</a>
+    <a href="#hero" class="nav-link block px-4 py-2 text-white hover:bg-purple-800">Home</a>
+    <a href="#about" class="nav-link block px-4 py-2 text-white hover:bg-purple-800">About</a>
+    <a href="#projects" class="nav-link block px-4 py-2 text-white hover:bg-purple-800">Projects</a>
+    <a href="#contact" class="nav-link block px-4 py-2 text-white hover:bg-purple-800">Contact</a>
   </div>
 </header>

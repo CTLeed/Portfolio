@@ -1,5 +1,29 @@
 <div class="page-wrapper">
+  <div class="background-overlay"></div> 
+
+  <!-- Navigation Header -->
   <app-header></app-header>
-  <app-hero></app-hero>
+
+  <!-- Sections for each component -->
+  <section id="hero">
+    <app-hero></app-hero>
+  </section>
+
+  <section id="about" class="section">
+    <app-about></app-about>
+  </section>
+
+  <section id="projects" class="section">
+    <app-projects></app-projects>
+  </section>
+
+  <section id="contact" class="section">
+    <app-contact></app-contact>
+  </section>
+
+  <section id="footer" class="section">
+    <app-footer></app-footer>
+  </section>  
+  
   <router-outlet></router-outlet>
 </div>
