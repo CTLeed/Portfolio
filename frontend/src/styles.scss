@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: white;
+  margin: 0;
+  padding: 0;
+}
+
+.section {
+  min-height: 100vh;
+}

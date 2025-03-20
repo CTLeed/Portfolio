@@ -1,0 +1,25 @@
+contact {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.contact-form-container {
+  margin: 0 auto;
+  background: rgba(185, 160, 253, 0.507);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  position: relative;
+  z-index: 10;
+}
+
+input, textarea {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  color: rgb(26, 20, 20);
+  border-radius: 6px;
+  font-size: 1rem;
+  width: 100%;
+  outline: none;
+  position: relative;
+}

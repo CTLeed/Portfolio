@@ -1,0 +1,35 @@
+<header class="fixed top-0 left-0 w-full">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      
+      <!-- Left: Profile Image & Name -->
+      <div class="flex items-center space-x-3">
+        <img src="/profile.jpeg" alt="Your Name" loading="lazy" class="w-12 h-12 rounded-full object-cover border-2 border-white">
+        <span class="text-white font-bold text-lg">Colby Leed</span>
+      </div>
+
+      <!-- Center: Navigation Links -->
+      <nav class="hidden md:flex space-x-6">
+        <a href="#hero" [class.active]="activeSection === 'hero'">Home</a>
+        <a href="#about" [class.active]="activeSection === 'about'">About</a>
+        <a href="#projects" [class.active]="activeSection === 'projects'">Projects</a>
+        <a href="#contact" [class.active]="activeSection === 'contact'">Contact</a>
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-button" class="md:hidden text-white">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-purple-700 py-2">
+    <a href="#hero" class="nav-link block px-4 py-2 text-white hover:bg-purple-800">Home</a>
+    <a href="#about" class="nav-link block px-4 py-2 text-white hover:bg-purple-800">About</a>
+    <a href="#projects" class="nav-link block px-4 py-2 text-white hover:bg-purple-800">Projects</a>
+    <a href="#contact" class="nav-link block px-4 py-2 text-white hover:bg-purple-800">Contact</a>
+  </div>
+</header>
