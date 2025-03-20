@@ -6,7 +6,7 @@ contact {
 
 .contact-form-container {
   margin: 0 auto;
-  background: rgba(173, 146, 248, 0.507);
+  background: rgba(185, 160, 253, 0.507);
   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   position: relative;
@@ -23,8 +23,3 @@ input, textarea {
   outline: none;
   position: relative;
 }
-
-// input:focus, textarea:focus {
-//   border-color: #2563eb;
-//   box-shadow: 0 0 5px rgba(37, 99, 235, 0.5);
-// }
