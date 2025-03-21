@@ -52,7 +52,7 @@ export class ProjectService {
         description: "A website for a movie theater to allow moviegoers to reserve seats and purchase tickets.",
         imageUrl: "theater3.jpg",
         projectUrl: "",
-        role: "full stack developer",
+        role: "Full Stack Developer",
         technologies: ["React", "Java", "Spring Boot", "MySQL", "GitHub"],
       },
     ];

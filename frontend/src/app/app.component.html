@@ -1,6 +1,6 @@
-<div class="page-wrapper relative bg-gradient-to-r from-bg-blue to-bg-black">
+<div class="page-wrapper relative bg-gradient-to-r from-bg-blue to-bg-black overflow-hidden">
   <!-- <div class="background-overlay"></div>  -->
-   <div class="absolute bg-cover bg-center inset-0 bg-[url('/abstract-background.jpg')] opacity-20"></div>
+   <div class="absolute bg-cover bg-center inset-0 bg-[url('/abstract-background.jpg')] opacity-20 overflow-x-clip"></div>
 
   <!-- Navigation Header -->
   <section id="header" class="nav-header">
@@ -12,7 +12,7 @@
     <app-hero></app-hero>
   </section>
 
-  <section id="about" class="section">
+  <section id="about" class="h-auto md:h-screen">
     <app-about></app-about>
   </section>
 
@@ -20,11 +20,11 @@
     <app-projects></app-projects>
   </section>
 
-  <section id="contact" class="section">
+  <section id="contact" class="h-auto">
     <app-contact></app-contact>
   </section>
 
-  <section id="footer" class="section">
+  <section id="footer" class="footer-component">
     <app-footer></app-footer>
   </section>  
 

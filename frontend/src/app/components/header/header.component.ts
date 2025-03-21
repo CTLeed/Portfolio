@@ -14,6 +14,7 @@ import { RouterModule } from '@angular/router';
 })
 export class HeaderComponent {
   activeSection: string = 'hero';
+  isMenuHidden: boolean = true;
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -28,6 +29,10 @@ export class HeaderComponent {
         }
       }
     }
+  }
+
+  toggleMenu() {
+    this.isMenuHidden = !this.isMenuHidden;
   }
 
 }
