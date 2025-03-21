@@ -41,7 +41,7 @@ export class ProjectService {
       },
       {
         name: "Portfolio Website",
-        description: "Personal portfolio website showcasing projects and skills.",
+        description: "Personal portfolio website showcasing projects and technologies.",
         imageUrl: "portfolio.jpg",
         projectUrl: "",
         role: "Full Stack Developer",
