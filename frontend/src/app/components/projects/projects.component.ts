@@ -29,6 +29,7 @@ export class ProjectsComponent implements OnInit {
     "Express": "/logos/express.svg",
     "GitHub": "/logos/github.svg",
     "MySQL": "/logos/mysql.svg",
+    "Geoapify": "/logos/geoapify.svg"
   };
   
   constructor(private projectService: ProjectService) { }

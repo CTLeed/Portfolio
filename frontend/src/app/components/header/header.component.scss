@@ -3,10 +3,6 @@ header {
   z-index: 50;
 }
 
-#hero {
-  padding-top: 80px;
-}
-
 nav a {
   color: white;
   transition: color 0.3s ease;
@@ -16,23 +12,4 @@ nav a.active {
   color: orange;
   font-weight: bold;
   border-bottom: 2px solid orange;
-}
-
-#mobile-menu-button {
-  cursor: pointer;
-}
-
-#mobile-menu {
-  display: none;
-}
-
-/* Mobile Menu Toggle */
-@media (max-width: 768px) {
-  #mobile-menu-button {
-    display: block;
-  }
-
-  #mobile-menu.open {
-    display: block;
-  }
 }

@@ -7,7 +7,7 @@ import { FormGroup, FormBuilder, ReactiveFormsModule, Validators, FormControl } 
   standalone: true,
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss']
