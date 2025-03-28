@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 export interface Project {
   name: string;
@@ -20,8 +21,17 @@ export class ProjectService {
   constructor(private http: HttpClient) { }
 
   getProjects(): Observable<Project[]> {
+
     return this.http.get<Project[]>(this.apiUrl)
       .pipe(
+        map((projects: Project[]) => projects.map((project: Project) => ({
+          name: project.name,
+          description: project.description,
+          imageUrl: project.imageUrl,
+          projectUrl: project.projectUrl,
+          role: project.role,
+          technologies: project.technologies,
+        }))),
         catchError(() => {
           console.warn("Backend not available, using fallback data.");
           return of(this.getFallbackProjects());
@@ -37,7 +47,7 @@ export class ProjectService {
         imageUrl: "MW.jpg",
         projectUrl: 'https://mustwants.com',
         role: "Full Stack Developer",
-        technologies: ["React", "Node.js", "Express", "MongoDB", "Stripe", "Vercel", "AWS", "Geoapify", "Tailwind CSS", "Docker"],
+        technologies: ["React", "Node.js", "Express", "MongoDB", "Stripe", "Vercel", "AWS", "Geoapify", "Tailwind CSS", "Docker", "GitLab"],
       },
       {
         name: "Portfolio Website",
@@ -45,7 +55,7 @@ export class ProjectService {
         imageUrl: "portfolio.jpg",
         projectUrl: "",
         role: "Full Stack Developer",
-        technologies: ["Angular", "Tailwind CSS", "Java", "Spring Boot", "PostgreSQL"],
+        technologies: ["Angular", "Tailwind CSS", "Java", "Spring Boot", "PostgreSQL", "GitHub"],
       },
       {
         name: "Movie Theater Group",
