@@ -1,0 +1,6 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4 max-w-sm mx-auto mt-10">
+  <input formControlName="username" placeholder="Username" class="border p-2 rounded" />
+  <input formControlName="password" type="password" placeholder="Password" class="border p-2 rounded" />
+  <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded">Login</button>
+  <p *ngIf="error" class="text-red-500">{{ error }}</p>
+</form>
