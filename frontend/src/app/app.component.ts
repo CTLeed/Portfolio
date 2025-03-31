@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterOutlet, Router } from '@angular/router';
 import { HeroComponent } from './components/hero/hero.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AboutComponent } from './components/about/about.component';
@@ -11,17 +12,23 @@ import { ProjectsComponent } from './components/projects/projects.component';
   selector: 'app-root',
   standalone: true,
   imports: [
+    CommonModule,
     RouterOutlet,
     HeroComponent,
     HeaderComponent,
     AboutComponent,
     ContactComponent,
     ProjectsComponent,
-    FooterComponent
-],
+    FooterComponent,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'frontend';
+  private router = inject(Router);
+
+  get isAdminRoute(): boolean {
+    return this.router.url.startsWith('/admin');
+  }
 }

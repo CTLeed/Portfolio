@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, inject, PLATFORM_ID, AfterViewInit } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, FormGroup, Validators } from '@angular/forms'; // Import ReactiveFormsModule for form handling
 import { Router } from '@angular/router'; // Import Router for navigation
 import { LoginService } from '../../services/login.service';
@@ -18,6 +18,7 @@ export class LoginComponent {
   private fb = inject(FormBuilder); // Inject FormBuilder for creating the form
   private loginService = inject(LoginService); // Inject LoginService for handling login logic
   private router = inject(Router); // Inject Router for navigation after login
+  private platformId = inject(PLATFORM_ID); // Inject PLATFORM_ID to check if the platform is browser
 
   loginForm: FormGroup = this.fb.group({
     username: ['', [Validators.required, Validators.minLength(3)]], // Username field with validation
@@ -38,6 +39,14 @@ export class LoginComponent {
           this.error = 'Invalid username or password. Please try again.'; // Set error message
           console.error('Login failed'); // Log to console for debugging
         }
+      });
+    }
+  }
+
+  ngAfterViewInit() {
+    if (isPlatformBrowser(this.platformId)) { // Check if the platform is browser
+      setTimeout(() => {
+        document.getElementById('login')?.scrollIntoView({ behavior: 'smooth' }); // Smooth scroll to the login section after view initialization
       });
     }
   }
