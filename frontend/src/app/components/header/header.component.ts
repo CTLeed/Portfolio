@@ -1,6 +1,7 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
+import { LoginVisibilityService } from '../../features/login-visibility.service';
 
 @Component({
   selector: 'app-header',
@@ -13,8 +14,15 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  private loginVisibility = inject(LoginVisibilityService);
+
   activeSection: string = 'hero';
   isMenuHidden: boolean = true;
+  secretClickCount = 0;
+  lastClickTime = 0;
+  
+
+  private router = inject(Router);
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -34,5 +42,28 @@ export class HeaderComponent {
   toggleMenu() {
     this.isMenuHidden = !this.isMenuHidden;
   }
+
+  handleSecretClick() {
+    const now = Date.now();
+
+    if (now - this.lastClickTime < 600) {
+      this.secretClickCount++;
+      console.log('Secret click detected! Count:', this.secretClickCount);
+    } else {
+      this.secretClickCount = 1;
+    }
+
+    this.lastClickTime = now;
+
+    if (this.secretClickCount >= 5) {
+      this.secretClickCount = 0;
+      this.router.navigate(['/login']);
+    }
+  }
+
+  get isLoginVisible(): boolean {
+    return this.loginVisibility.isLoginVisible();
+  }
+
 
 }

@@ -1,6 +1,11 @@
 <header class="fixed bg-bg-black shadow-sm top-0 left-0 w-full">
   <div class="max-w-7xl mx-auto px-4 py-1 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
+      <div
+      *ngIf="!isLoginVisible"
+  (click)="handleSecretClick()"
+  class="absolute top-0 left-0 w-8 h-8 opacity-0 z-10"
+></div>
       
       <!-- Left: Profile Image & Name -->
       <div class="flex items-center space-x-3">
