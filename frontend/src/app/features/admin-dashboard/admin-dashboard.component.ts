@@ -35,7 +35,7 @@ export class AdminDashboardComponent implements OnInit {
       name: ['', Validators.required],
       role: ['', Validators.required],
       description: ['', Validators.required],
-      imageUrl: ['', Validators.required],
+      imageUrl: [''],
       technologies: ['', Validators.required],
       projectUrl: ['']
     });

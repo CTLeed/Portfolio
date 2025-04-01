@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Project } from './project.service';
+import { environment } from '../../environments/environment'; // Adjust the import based on your environment setup
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
-  private apiUrl = 'http://localhost:8080/api/admin';
+  private apiUrl = `${environment.apiUrl}/admin`;
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, of } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from '../../environments/environment'; // Adjust the import based on your environment setup
 
 export interface Project {
   id: string;
@@ -17,7 +18,7 @@ export interface Project {
   providedIn: 'root'
 })
 export class ProjectService {
-  private apiUrl = 'http://localhost:8080/api/projects';
+  private apiUrl = `${environment.apiUrl}/projects`;
 
   constructor(private http: HttpClient) { }
 
