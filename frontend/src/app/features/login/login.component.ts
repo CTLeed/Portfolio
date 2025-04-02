@@ -43,6 +43,10 @@ export class LoginComponent {
     }
   }
 
+  close() {
+    this.router.navigate(['/']);
+  }
+
   ngAfterViewInit() {
     if (isPlatformBrowser(this.platformId)) { // Check if the platform is browser
       setTimeout(() => {
