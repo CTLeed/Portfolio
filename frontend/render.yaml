@@ -1,6 +1,6 @@
 services:
-  - type: static
+  - type: web
     name: frontend
-    rootDir: frontend
-    buildCommand: npm install && npx ng build --configuration production
-    staticPublishPath: dist/frontend/browser
+    env: node
+    buildCommand: cd frontend && npm install && npm run build:ssr
+    startCommand: cd frontend && npm run serve:ssr
