@@ -35,12 +35,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [],
-            "server": "src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "server.ts"
-            }
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -106,7 +101,7 @@
         "deploy": {
           "builder": "angular-cli-ghpages:deploy",
           "options": {
-            "baseHref": "/MySiteFrontend/frontend/",
+            "baseHref": "/",
             "deployUrl": "/MySiteFrontend/frontend/",
             "name": "Your Name",
             "email": "your.email@example.com",
