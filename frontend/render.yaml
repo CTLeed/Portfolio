@@ -1,11 +1,6 @@
 services:
-  - type: web
+  - type: static
     name: frontend
-    env: node
     rootDir: frontend
-    buildCommand: npm install && npm run build
-    startCommand: npm run start
-    envVars:
-      - key: NODE_VERSION
-        value: 18.0.0
-    staticPublishPath: ./dist/frontend/browser 
+    buildCommand: npm install && npx ng build --configuration production
+    staticPublishPath: dist/frontend/browser
