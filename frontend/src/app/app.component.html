@@ -1,5 +1,5 @@
 <ng-container *ngIf="!isAdminRoute">
-  <div class="page-wrapper relative bg-gradient-to-r from-bg-blue to-bg-black overflow-hidden">
+  <div class="page-wrapper relative bg-gradient-to-r from-bg-blue to-bg-black overflow-hidden snap-y snap-mandatory scroll-smooth">
     <!-- <div class="background-overlay"></div>  -->
     <div class="absolute bg-cover bg-center inset-0 bg-[url('/abstract-background.jpg')] opacity-20 overflow-x-clip"></div>
 
@@ -13,7 +13,7 @@
       <app-hero></app-hero>
     </section>
 
-    <section id="about" class="h-auto md:h-screen">
+    <section id="about" class="h-auto md:h-screen">    
       <app-about></app-about>
     </section>
 
