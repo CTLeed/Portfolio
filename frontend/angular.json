@@ -102,6 +102,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {
+            "baseHref": "/MySiteFrontend/frontend/",
+            "deployUrl": "/MySiteFrontend/frontend/",
+            "name": "Your Name",
+            "email": "your.email@example.com",
+            "message": "Deploy to GitHub Pages"
+          }
         }
       }
     }
