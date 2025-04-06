@@ -13,6 +13,8 @@ import { ProjectService, Project } from '../../services/project.service';
 })
 export class ProjectsComponent implements OnInit {
   projects: any[] = [];
+  isLoading: boolean = true;
+
   technologyLogos: { [key: string]: string } = {
     "Angular": "/logos/angular-icon.svg",
     "React": "/logos/react.svg",
@@ -36,8 +38,15 @@ export class ProjectsComponent implements OnInit {
   constructor(private projectService: ProjectService) { }
 
   ngOnInit(): void {
-    this.projectService.getProjects().subscribe(projects => {
-      this.projects = projects;
+    this.projectService.getProjects().subscribe({
+      next: (projects: Project[]) => {
+        this.projects = projects;
+        this.isLoading = false;
+      },
+      error: (error) => {
+        console.error("Error fetching projects:", error);
+        this.isLoading = false;
+      }
     });
   }
 }

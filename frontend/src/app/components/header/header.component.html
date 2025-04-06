@@ -31,7 +31,7 @@
   </div>
 
   <!-- Mobile Menu -->
-  <div id="mobile-menu" [ngClass]="{'hidden': isMenuHidden}" class="md:hidden bg-purple-700 py-2">
+  <div id="mobile-menu" (click)="toggleMenu()" [ngClass]="{'hidden': isMenuHidden}" class="md:hidden bg-purple-700 py-2">
     <a href="#hero" class="nav-link block px-4 py-2 text-white hover:bg-purple-800">Home</a>
     <a href="#about" class="nav-link block px-4 py-2 text-white hover:bg-purple-800">About</a>
     <a href="#projects" class="nav-link block px-4 py-2 text-white hover:bg-purple-800">Projects</a>
