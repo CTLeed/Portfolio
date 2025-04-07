@@ -32,7 +32,8 @@ export class ProjectsComponent implements OnInit {
     "GitHub": "/logos/github.svg",
     "MySQL": "/logos/mysql.svg",
     "Geoapify": "/logos/geoapify.svg",
-    "GitLab": "/logos/gitlab.svg"
+    "GitLab": "/logos/gitlab.svg",
+    "Render": "/logos/render.svg",
   };
   
   constructor(private projectService: ProjectService) { }

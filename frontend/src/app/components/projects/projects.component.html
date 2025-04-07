@@ -30,19 +30,22 @@
         <p class="text-orange-400 font-semibold mt-2">{{ project.role }}</p>
 
         <!-- Technologies -->
-        <div class="mt-2 mb-4 min-h-[64px]"> <!-- Set min height here -->
-          <div class="flex flex-wrap justify-center gap-2">
-            <div *ngFor="let tech of project.technologies" class="flex items-center">
+        <div class="flex flex-wrap justify-center gap-2">
+          <div *ngFor="let tech of project.technologies; let i = index" class="w-10 h-10 perspective">
+            <div
+              class="flip-in opacity-0"
+              [ngStyle]="{ 'animation-delay': (i * 150) + 'ms' }"
+            >
               <img *ngIf="technologyLogos[tech]; else textFallback"
                    [src]="technologyLogos[tech]" [alt]="tech"
-                   class="w-8 h-8">
+                   class="w-full h-full object-contain">
               <ng-template #textFallback>
                 <span class="text-gray-300 text-sm">{{ tech }}</span>
               </ng-template>
             </div>
           </div>
         </div>
-
+        
         <!-- Description -->
         <div class="flex-grow mb-2">
           <p class="text-gray-300">{{ project.description }}</p>
