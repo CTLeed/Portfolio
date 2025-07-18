@@ -32,8 +32,7 @@
         <!-- Technologies -->
         <div class="flex flex-wrap justify-center gap-2">
           <div *ngFor="let tech of project.technologies; let i = index" class="w-10 h-10 perspective">
-            <div
-              class="flip-in opacity-0"
+           <div class="flip-in opacity-0 animate-on-scroll duration-700"
               [ngStyle]="{ 'animation-delay': (i * 150) + 'ms' }"
             >
               <img *ngIf="technologyLogos[tech]; else textFallback"
