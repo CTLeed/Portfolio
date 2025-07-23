@@ -1,13 +1,23 @@
 <div class="hero-container relative h-screen flex flex-col items-center justify-center text-center px-6">
 
-  <!-- Hero Text -->
-  <h1 class="text-3xl md:text-5xl font-bold mt-4 animate-slide-down">Hello, I'm <span class="text-orange-400">Colby</span></h1>
-  <p class="text-lg md:text-xl text-gray-200 mt-2 animate-slide-up max-w-xl">
-    A passionate <span class="text-blue-500">Software Developer</span> creating impactful digital experiences.
-  </p>
+  <!-- Hero Text with Typing Animation -->
+  <h1 class="text-3xl md:text-5xl font-bold mt-4 animate-slide-down">
+    Hello, I'm <span class="text-orange-400">Colby</span>
+  </h1>
+  
+  <div class="typing-container mt-2 h-16 md:h-20 flex items-center justify-center">
+    <p class="text-lg md:text-xl text-gray-200 max-w-xl">
+      A passionate <span class="text-blue-500 typewriter" [attr.data-text]="currentText">{{ displayText }}</span><span class="cursor">|</span>
+    </p>
+  </div>
 
-  <!-- CTA Button -->
-  <a href="#projects" class="btn cta-button mt-6 bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg text-lg transition duration-300 shadow-lg hover:shadow-xl">
-    View My Work
-  </a>
+  <!-- CTA Buttons -->
+  <div class="flex flex-col sm:flex-row gap-4 mt-6">
+    <a href="#projects" class="btn cta-button bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-lg text-lg transition duration-300 shadow-lg hover:shadow-xl transform hover:scale-105">
+      View My Work
+    </a>
+    <a href="/resume.pdf" target="_blank" class="btn cta-button-secondary border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white font-bold py-3 px-6 rounded-lg text-lg transition duration-300 shadow-lg transform hover:scale-105">
+      Download Resume
+    </a>
+  </div>
 </div>

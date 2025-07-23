@@ -1,4 +1,8 @@
-<header class="fixed bg-bg-black shadow-sm top-0 left-0 w-full">
+<header class="fixed top-0 left-0 w-full z-50 transition-all duration-300" 
+        [class.bg-black]="isScrolled" 
+        [class.bg-opacity-90]="isScrolled"
+        [class.backdrop-blur-md]="isScrolled"
+        [class.shadow-lg]="isScrolled">
   <div class="max-w-7xl mx-auto px-4 py-1 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       <div
@@ -21,20 +25,61 @@
         <a href="#contact" [class.active]="activeSection === 'contact'">Contact</a>
       </nav>
 
-      <!-- Mobile Menu Button -->
-      <button (click)="toggleMenu()" id="mobile-menu-button" class="md:hidden text-white z-10">
-        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
-        </svg>
+      <!-- Animated Mobile Menu Button -->
+      <button (click)="toggleMenu()" id="mobile-menu-button" class="md:hidden text-white z-10 p-2 transition-transform duration-300" 
+              [class.transform]="!isMenuHidden" [class.rotate-90]="!isMenuHidden">
+        <div class="hamburger-lines space-y-1">
+          <span class="block w-6 h-0.5 bg-white transition-all duration-300 origin-center" 
+                [class.rotate-45]="!isMenuHidden" [class.translate-y-1.5]="!isMenuHidden"></span>
+          <span class="block w-6 h-0.5 bg-white transition-all duration-300" 
+                [class.opacity-0]="!isMenuHidden"></span>
+          <span class="block w-6 h-0.5 bg-white transition-all duration-300 origin-center" 
+                [class.-rotate-45]="!isMenuHidden" [class.-translate-y-1.5]="!isMenuHidden"></span>
+        </div>
       </button>
     </div>
   </div>
 
-  <!-- Mobile Menu -->
-  <div id="mobile-menu" (click)="toggleMenu()" [ngClass]="{'hidden': isMenuHidden}" class="md:hidden bg-purple-700 py-2">
-    <a href="#hero" class="nav-link block px-4 py-2 text-white hover:bg-purple-800">Home</a>
-    <a href="#about" class="nav-link block px-4 py-2 text-white hover:bg-purple-800">About</a>
-    <a href="#projects" class="nav-link block px-4 py-2 text-white hover:bg-purple-800">Projects</a>
-    <a href="#contact" class="nav-link block px-4 py-2 text-white hover:bg-purple-800">Contact</a>
+  <!-- Enhanced Mobile Menu -->
+  <div id="mobile-menu" 
+       [ngClass]="{'hidden': isMenuHidden, 'flex': !isMenuHidden}" 
+       class="md:hidden fixed inset-0 bg-black bg-opacity-95 backdrop-blur-sm z-40 flex-col items-center justify-center space-y-8 transition-all duration-300">
+    
+    <!-- Close Button -->
+    <button (click)="toggleMenu()" class="absolute top-6 right-6 text-white text-2xl hover:text-orange-400 transition-colors duration-200">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+
+    <!-- Navigation Links -->
+    <div class="flex flex-col items-center space-y-6 text-center">
+      <a href="#hero" (click)="toggleMenu()" 
+         class="nav-link text-2xl font-bold text-white hover:text-orange-400 transform hover:scale-110 transition-all duration-300 py-2">
+         Home
+      </a>
+      <a href="#about" (click)="toggleMenu()" 
+         class="nav-link text-2xl font-bold text-white hover:text-orange-400 transform hover:scale-110 transition-all duration-300 py-2">
+         About
+      </a>
+      <a href="#projects" (click)="toggleMenu()" 
+         class="nav-link text-2xl font-bold text-white hover:text-orange-400 transform hover:scale-110 transition-all duration-300 py-2">
+         Projects
+      </a>
+      <a href="#contact" (click)="toggleMenu()" 
+         class="nav-link text-2xl font-bold text-white hover:text-orange-400 transform hover:scale-110 transition-all duration-300 py-2">
+         Contact
+      </a>
+    </div>
+
+    <!-- Social Links -->
+    <div class="flex space-x-6 mt-8">
+      <a href="https://www.linkedin.com/in/colby-leed/" target="_blank" 
+         class="text-white hover:text-orange-400 transform hover:scale-110 transition-all duration-300">
+        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+      </a>
+    </div>
   </div>
 </header>

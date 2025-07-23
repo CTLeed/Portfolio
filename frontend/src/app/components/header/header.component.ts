@@ -18,6 +18,7 @@ export class HeaderComponent {
 
   activeSection: string = 'hero';
   isMenuHidden: boolean = true;
+  isScrolled: boolean = false;
   secretClickCount = 0;
   lastClickTime = 0;
   
@@ -26,6 +27,10 @@ export class HeaderComponent {
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
+    // Update scroll state for header styling
+    this.isScrolled = window.scrollY > 50;
+
+    // Update active section
     const sections = ['hero', 'about', 'projects', 'contact'];
 
     for (let section of sections) {

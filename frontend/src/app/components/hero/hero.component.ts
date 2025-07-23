@@ -13,6 +13,21 @@ import { isPlatformBrowser, CommonModule } from '@angular/common';
 export class HeroComponent implements OnInit, OnDestroy {
   private overlay: HTMLElement | null = null;
   private ticking = false;
+  private typingInterval: any;
+  private currentIndex = 0;
+  private charIndex = 0;
+  private isDeleting = false;
+
+  // Typing animation properties
+  displayText = '';
+  currentText = '';
+  
+  private texts = [
+    'Software Developer',
+    'Full-Stack Engineer', 
+    'Backend Specialist',
+    'Problem Solver'
+  ];
 
   constructor(
     private el: ElementRef,
@@ -26,7 +41,43 @@ export class HeroComponent implements OnInit, OnDestroy {
       if (this.overlay) {
         this.updateParallax();
       }
+      this.startTypingAnimation();
     }
+  }
+
+  private startTypingAnimation() {
+    this.typingInterval = setInterval(() => {
+      this.typeText();
+    }, 100);
+  }
+
+  private typeText() {
+    const currentFullText = this.texts[this.currentIndex];
+
+    if (!this.isDeleting) {
+      // Typing forward
+      this.displayText = currentFullText.substring(0, this.charIndex + 1);
+      this.charIndex++;
+
+      if (this.charIndex === currentFullText.length) {
+        // Finished typing, wait then start deleting
+        setTimeout(() => {
+          this.isDeleting = true;
+        }, 2000);
+      }
+    } else {
+      // Deleting
+      this.displayText = currentFullText.substring(0, this.charIndex - 1);
+      this.charIndex--;
+
+      if (this.charIndex === 0) {
+        // Finished deleting, move to next text
+        this.isDeleting = false;
+        this.currentIndex = (this.currentIndex + 1) % this.texts.length;
+      }
+    }
+
+    this.currentText = this.displayText;
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -48,6 +99,8 @@ export class HeroComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    // Cleanup if needed
+    if (this.typingInterval) {
+      clearInterval(this.typingInterval);
+    }
   }
 }

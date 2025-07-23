@@ -1,4 +1,10 @@
 <ng-container *ngIf="!isAdminRoute">
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress-container fixed top-0 left-0 w-full h-1 bg-gray-800 z-50">
+    <div class="scroll-progress-bar h-full bg-gradient-to-r from-orange-500 to-blue-500 transition-all duration-150 ease-out" 
+         [style.width.%]="scrollProgress"></div>
+  </div>
+
   <div class="page-wrapper relative bg-gradient-to-r from-bg-blue to-bg-black overflow-hidden snap-y snap-mandatory scroll-smooth">
     <!-- <div class="background-overlay"></div>  -->
     <div class="absolute bg-cover bg-center inset-0 bg-[url('/abstract-background.jpg')] opacity-20 overflow-x-clip"></div>
@@ -30,5 +36,8 @@
     </section>
   </div>
 </ng-container>
+
+<!-- Toast Notifications (Global) -->
+<app-toast></app-toast>
 
 <router-outlet></router-outlet>
