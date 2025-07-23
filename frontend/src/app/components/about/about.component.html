@@ -1,6 +1,14 @@
-<div class="flex flex-col justify-center min-h-screen bg-gradient-to-b from-slate-800 to-slate-900">
-<div class="hidden md:block py-20 px-6 md:px-12 text-white text-center max-w-4xl mx-auto">
-  <h2 class="text-3xl md:text-4xl font-bold mb-6">About Me</h2>
+<div class="flex flex-col justify-center min-h-screen bg-gradient-to-b from-slate-800 to-slate-900 relative">
+  <!-- Section Background Pattern -->
+  <div class="absolute inset-0 opacity-5">
+    <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0); background-size: 40px 40px;"></div>
+  </div>
+
+<div class="hidden md:block py-20 px-6 md:px-12 text-white text-center max-w-4xl mx-auto relative z-10">
+  <div class="section-header mb-8">
+    <h2 class="text-3xl md:text-4xl font-bold mb-2">About <span class="text-orange-400">Me</span></h2>
+    <div class="w-20 h-1 bg-gradient-to-r from-orange-400 to-blue-500 mx-auto rounded-full"></div>
+  </div>
   <p class="text-lg leading-relaxed">
     Hi! I'm a full-stack developer with a strong passion for backend systems and clean, scalable code. I graduated from Coding Dojo in 2022 and am currently pursuing a Bachelor of Science in Computer Science at Western Governors University to deepen my technical foundation.
   </p>
@@ -12,8 +20,11 @@
   </p>
 </div>
 
-<div class="block md:hidden px-4 text-white text-center mb-36">
-  <h2 class="text-2xl font-semibold mb-3">About Me</h2>
+<div class="block md:hidden px-4 text-white text-center mb-36 relative z-10">
+  <div class="section-header mb-4">
+    <h2 class="text-2xl font-semibold mb-2">About <span class="text-orange-400">Me</span></h2>
+    <div class="w-16 h-1 bg-gradient-to-r from-orange-400 to-blue-500 mx-auto rounded-full"></div>
+  </div>
   <p class="text-base">
     Full-stack developer who loves backend work. I’m currently building <strong>BloomMap</strong>, a tool for flower micro farmers to plan and track their gardens.
   </p>

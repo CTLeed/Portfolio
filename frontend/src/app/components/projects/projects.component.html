@@ -1,5 +1,16 @@
-<div class="projects-container text-center mt-8 py-12 px-6">
-  <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white">My Projects</h2>
+<div class="projects-container text-center mt-8 py-12 px-6 relative">
+  <!-- Section Background Pattern -->
+  <div class="absolute inset-0 opacity-5">
+    <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0); background-size: 40px 40px;"></div>
+  </div>
+
+  <div class="section-header mb-12 relative z-10">
+    <h2 class="text-3xl md:text-4xl font-bold mb-2 text-white">My <span class="text-orange-400">Projects</span></h2>
+    <div class="w-20 h-1 bg-gradient-to-r from-orange-400 to-blue-500 mx-auto rounded-full"></div>
+    <p class="text-gray-300 mt-4 max-w-2xl mx-auto">
+      Here are some of the projects I've built using various technologies and frameworks.
+    </p>
+  </div>
 
   <!-- Loading Animation -->
   <div *ngIf="isLoading" class="flex flex-col items-center justify-center py-20 text-center text-white">

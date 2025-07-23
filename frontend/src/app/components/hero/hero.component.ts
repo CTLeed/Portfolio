@@ -104,4 +104,10 @@ export class HeroComponent implements OnInit, OnDestroy {
       clearInterval(this.typingInterval);
     }
   }
+
+  onResumeClick(event: Event) {
+    // Debug method to check if file exists
+    console.log('Resume button clicked');
+    // Let the default behavior happen
+  }
 }

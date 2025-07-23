@@ -1,5 +1,18 @@
-<div class="contact-form-container w-[80vw] md:w-2/3 lg:w-2/5 mx-auto px-6 py-6 shadow-lg rounded-lg mb-30">
-  <h2 class="text-2xl font-bold mb-4 text-center text-white">Message Me</h2>
+<div class="contact-section relative py-12">
+  <!-- Section Background Pattern -->
+  <div class="absolute inset-0 opacity-5">
+    <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0); background-size: 40px 40px;"></div>
+  </div>
+
+  <div class="section-header mb-12 text-center relative z-10">
+    <h2 class="text-3xl md:text-4xl font-bold mb-2 text-white">Get In <span class="text-blue-400">Touch</span></h2>
+    <div class="w-20 h-1 bg-gradient-to-r from-blue-400 to-orange-500 mx-auto rounded-full"></div>
+    <p class="text-gray-300 mt-4 max-w-2xl mx-auto">
+      I'm always interested in new opportunities and collaborations. Let's connect!
+    </p>
+  </div>
+
+<div class="contact-form-container w-[80vw] md:w-2/3 lg:w-2/5 mx-auto px-6 py-6 shadow-lg rounded-lg mb-30 relative z-10 bg-gray-900 bg-opacity-50 backdrop-blur-sm border border-gray-700">
 
   <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-4">
 
@@ -46,6 +59,7 @@
   </form>
 
 </div>
+
 <div class="relative flex justify-center items-center space-x-2 mb-20">
   <p class="text-gray-300">Or Connect on</p>
   <a href="https://www.linkedin.com/in/colby-leed/" target="_blank" rel="noopener noreferrer"
@@ -53,4 +67,5 @@
      <span>LinkedIn</span>
      <img src="/logos/linkedin.svg" alt="LinkedIn" class="w-5 h-5">
   </a>
+</div>
 </div>

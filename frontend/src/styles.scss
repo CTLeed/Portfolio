@@ -17,6 +17,89 @@ body {
   min-height: 100vh;
 }
 
+// Section Dividers
+.section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 2rem;
+  position: relative;
+  
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3), transparent);
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #ff6600, #3b82f6, transparent);
+      filter: blur(1px);
+      opacity: 0.6;
+    }
+  }
+  
+  .divider-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 2;
+    
+    // Animated dots
+    .divider-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #ff6600;
+      margin: 0 4px;
+      animation: pulse-dot 2s infinite ease-in-out;
+      
+      &:nth-child(2) {
+        animation-delay: 0.3s;
+        background: #3b82f6;
+      }
+      
+      &:nth-child(3) {
+        animation-delay: 0.6s;
+        background: #10b981;
+      }
+    }
+    
+    // Icon styling
+    svg {
+      filter: drop-shadow(0 0 8px currentColor);
+      animation: float 3s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.7;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 @layer utilities {
   .perspective {
     perspective: 1000px;
