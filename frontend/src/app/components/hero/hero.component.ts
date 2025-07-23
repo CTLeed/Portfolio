@@ -106,8 +106,6 @@ export class HeroComponent implements OnInit, OnDestroy {
   }
 
   onResumeClick(event: Event) {
-    console.log('Resume button clicked');
-    
     // Prevent the default link behavior to avoid double download
     event.preventDefault();
     
@@ -123,9 +121,7 @@ export class HeroComponent implements OnInit, OnDestroy {
           })
           .then(blob => {
             // Check if the blob has content
-            console.log('PDF blob size:', blob.size, 'bytes');
             if (blob.size === 0) {
-              console.error('Downloaded PDF is empty');
               alert('Resume file appears to be empty. Please contact me directly.');
               return;
             }
@@ -139,16 +135,12 @@ export class HeroComponent implements OnInit, OnDestroy {
             a.click();
             window.URL.revokeObjectURL(url);
             document.body.removeChild(a);
-            
-            console.log('Resume download initiated successfully');
           })
           .catch(error => {
-            console.error('Error downloading resume:', error);
             // Fallback: try direct download
             window.open('resume.pdf', '_blank');
           });
       } catch (error) {
-        console.error('Error in resume download:', error);
         // Fallback: try direct download
         window.open('resume.pdf', '_blank');
       }
