@@ -16,6 +16,14 @@
         mobileMenu.classList.toggle('hidden');
       });
     });
+
+    // Suppress browser extension errors in console
+    window.addEventListener('unhandledrejection', event => {
+      if (event.reason && event.reason.message && 
+          event.reason.message.includes('message channel closed')) {
+        event.preventDefault();
+      }
+    });
   </script>
 </head>
 <body>
