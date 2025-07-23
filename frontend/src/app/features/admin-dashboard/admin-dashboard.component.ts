@@ -46,17 +46,32 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   loadData(): void {
-    this.adminService.getProjects().subscribe(projects => {
-      this.projects = projects;
+    this.adminService.getProjects().subscribe({
+      next: (projects) => {
+        this.projects = projects;
+      },
+      error: (error) => {
+        console.error('Error loading projects:', error);
+      }
     });
 
-    this.adminService.getMessages().subscribe(messages => {
-      console.log("Messages from backend: ", messages);
-      this.messages = messages;
+    this.adminService.getMessages().subscribe({
+      next: (messages) => {
+        console.log("Messages from backend: ", messages);
+        this.messages = messages;
+      },
+      error: (error) => {
+        console.error('Error loading messages:', error);
+      }
     });
 
-    this.adminService.getAbout().subscribe(about => {
-      this.aboutContent = about.content;
+    this.adminService.getAbout().subscribe({
+      next: (about) => {
+        this.aboutContent = about.content;
+      },
+      error: (error) => {
+        console.error('Error loading about content:', error);
+      }
     });
   }
 
@@ -100,8 +115,15 @@ export class AdminDashboardComponent implements OnInit {
 
   deleteMessage(id: string): void {
     if (confirm('Are you sure you want to delete this message?')) {
-      this.adminService.deleteMessage(id).subscribe(() => {
-        this.loadData();
+      this.adminService.deleteMessage(id).subscribe({
+        next: () => {
+          console.log('Message deleted successfully');
+          this.loadData();
+        },
+        error: (error) => {
+          console.error('Error deleting message:', error);
+          alert('Failed to delete message. Please try again.');
+        }
       });
     }
   }
