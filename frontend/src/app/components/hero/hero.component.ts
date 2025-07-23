@@ -108,10 +108,12 @@ export class HeroComponent implements OnInit, OnDestroy {
   onResumeClick(event: Event) {
     console.log('Resume button clicked');
     
-    // Alternative download method if the direct link fails
+    // Prevent the default link behavior to avoid double download
+    event.preventDefault();
+    
     if (isPlatformBrowser(this.platformId)) {
       try {
-        // Try to fetch and download the file properly
+        // Programmatic download method
         fetch('resume.pdf')
           .then(response => {
             if (!response.ok) {
@@ -137,13 +139,18 @@ export class HeroComponent implements OnInit, OnDestroy {
             a.click();
             window.URL.revokeObjectURL(url);
             document.body.removeChild(a);
+            
+            console.log('Resume download initiated successfully');
           })
           .catch(error => {
             console.error('Error downloading resume:', error);
-            // Let the default link behavior handle it
+            // Fallback: try direct download
+            window.open('resume.pdf', '_blank');
           });
       } catch (error) {
         console.error('Error in resume download:', error);
+        // Fallback: try direct download
+        window.open('resume.pdf', '_blank');
       }
     }
   }
