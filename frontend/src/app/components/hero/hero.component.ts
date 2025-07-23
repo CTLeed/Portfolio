@@ -21,7 +21,7 @@ export class HeroComponent implements OnInit, OnDestroy {
   // Typing animation properties
   displayText = '';
   currentText = '';
-  hasResume = false; // Set to true when you have a resume.pdf in public folder
+  hasResume = true; // Set to true when you have a resume.pdf in public folder
   
   private texts = [
     'Software Developer',
