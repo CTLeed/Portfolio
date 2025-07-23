@@ -106,8 +106,45 @@ export class HeroComponent implements OnInit, OnDestroy {
   }
 
   onResumeClick(event: Event) {
-    // Debug method to check if file exists
     console.log('Resume button clicked');
-    // Let the default behavior happen
+    
+    // Alternative download method if the direct link fails
+    if (isPlatformBrowser(this.platformId)) {
+      try {
+        // Try to fetch and download the file properly
+        fetch('resume.pdf')
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Resume file not found');
+            }
+            return response.blob();
+          })
+          .then(blob => {
+            // Check if the blob has content
+            console.log('PDF blob size:', blob.size, 'bytes');
+            if (blob.size === 0) {
+              console.error('Downloaded PDF is empty');
+              alert('Resume file appears to be empty. Please contact me directly.');
+              return;
+            }
+            
+            // Create download link
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Colby_Leed_Resume.pdf';
+            document.body.appendChild(a);
+            a.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+          })
+          .catch(error => {
+            console.error('Error downloading resume:', error);
+            // Let the default link behavior handle it
+          });
+      } catch (error) {
+        console.error('Error in resume download:', error);
+      }
+    }
   }
 }

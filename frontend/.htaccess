@@ -1,0 +1,8 @@
+# Force download for PDF files
+<FilesMatch "\.(pdf)$">
+    Header set Content-Type "application/pdf"
+    Header set Content-Disposition "attachment"
+</FilesMatch>
+
+# Ensure proper MIME types
+AddType application/pdf .pdf
