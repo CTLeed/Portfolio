@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Project } from './project.service';
+import { Project } from '../models/project.models';
 import { environment } from '../../environments/environment'; // Adjust the import based on your environment setup
 
 @Injectable({
@@ -21,11 +21,11 @@ export class AdminService {
     return this.http.post<Project>(`${this.apiUrl}/projects`, project);
   }
 
-  updateProject(id: string, project: Partial<Project>): Observable<Project> {
+  updateProject(id: number, project: Partial<Project>): Observable<Project> {
     return this.http.put<Project>(`${this.apiUrl}/projects/${id}`, project);
   }
 
-  deleteProject(id: string): Observable<void> {
+  deleteProject(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/projects/${id}`);
   }
 
@@ -34,7 +34,7 @@ export class AdminService {
     return this.http.get<any[]>(`${this.apiUrl}/contact`);
   }
 
-  deleteMessage(id: string): Observable<void> {
+  deleteMessage(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/contact/${id}`);
   }
 

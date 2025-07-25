@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AdminService } from '../../services/admin.service';
-import { Project } from '../../services/project.service';
+import { Project } from '../../models/project.models';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -105,7 +105,7 @@ export class AdminDashboardComponent implements OnInit {
     });
   }
 
-  deleteProject(id: string): void {
+  deleteProject(id: number): void {
     if (confirm('Are you sure you want to delete this project?')) {
       this.adminService.deleteProject(id).subscribe(() => {
         this.loadData();
@@ -113,7 +113,7 @@ export class AdminDashboardComponent implements OnInit {
     }
   }
 
-  deleteMessage(id: string): void {
+  deleteMessage(id: number): void {
     if (confirm('Are you sure you want to delete this message?')) {
       this.adminService.deleteMessage(id).subscribe({
         next: () => {
