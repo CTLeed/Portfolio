@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ElementRef, HostListener, Inject, PLATFORM_ID, Renderer2 } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef, HostListener, Inject, PLATFORM_ID, Renderer2, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { isPlatformBrowser, CommonModule } from '@angular/common';
 
 @Component({
@@ -8,12 +8,13 @@ import { isPlatformBrowser, CommonModule } from '@angular/common';
     CommonModule
   ],
   templateUrl: './hero.component.html',
-  styleUrls: ['./hero.component.scss']
+  styleUrls: ['./hero.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeroComponent implements OnInit, OnDestroy {
   private overlay: HTMLElement | null = null;
   private ticking = false;
-  private typingInterval: any;
+  private typingInterval?: ReturnType<typeof setInterval>;
   private currentIndex = 0;
   private charIndex = 0;
   private isDeleting = false;
@@ -33,7 +34,8 @@ export class HeroComponent implements OnInit, OnDestroy {
   constructor(
     private el: ElementRef,
     @Inject(PLATFORM_ID) private platformId: Object,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -53,7 +55,7 @@ export class HeroComponent implements OnInit, OnDestroy {
   }
 
   private typeText() {
-    const currentFullText = this.texts[this.currentIndex];
+    const currentFullText = this.texts[this.currentIndex] ?? '';
 
     if (!this.isDeleting) {
       // Typing forward
@@ -79,6 +81,7 @@ export class HeroComponent implements OnInit, OnDestroy {
     }
 
     this.currentText = this.displayText;
+    this.cdr.markForCheck();
   }
 
   @HostListener('window:scroll', ['$event'])

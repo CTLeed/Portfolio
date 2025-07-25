@@ -1,21 +1,73 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { LoginCredentials, LoginResponse, AuthUser } from '../models/auth.models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  private apiUrl = `${environment.apiUrl}/auth/login`; // Example API endpoint for login
+  private apiUrl = `${environment.apiUrl}/auth`;
+  private currentUserSubject = new BehaviorSubject<AuthUser | null>(null);
+  public currentUser$ = this.currentUserSubject.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    // Initialize user from localStorage if available
+    this.loadUserFromStorage();
+  }
 
-  login(credentials: { username: string, password: string }): Observable<{token: string}> {
-    // Send a POST request to the login API with the credentials
-    return this.http.post<{token: string }>(this.apiUrl, null, {
-      params: credentials
-    });
-    // The response should include a token or some form of authentication upon successful login
+  login(credentials: LoginCredentials): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${this.apiUrl}/login`, credentials).pipe(
+      tap(response => {
+        if (response.token && typeof window !== 'undefined') {
+          localStorage.setItem('token', response.token);
+          // You might want to decode the JWT to get user info
+          // For now, just set a basic user object
+          const user: AuthUser = {
+            id: 1,
+            username: credentials.username
+          };
+          this.currentUserSubject.next(user);
+          if (window.localStorage) {
+            localStorage.setItem('currentUser', JSON.stringify(user));
+          }
+        }
+      })
+    );
+  }
+
+  logout(): void {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('currentUser');
+    }
+    this.currentUserSubject.next(null);
+  }
+
+  isAuthenticated(): boolean {
+    if (typeof window === 'undefined') {
+      return false;
+    }
+    const token = localStorage.getItem('token');
+    return !!token;
+  }
+
+  getCurrentUser(): AuthUser | null {
+    return this.currentUserSubject.value;
+  }
+
+  private loadUserFromStorage(): void {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const userStr = localStorage.getItem('currentUser');
+      if (userStr) {
+        try {
+          const user = JSON.parse(userStr);
+          this.currentUserSubject.next(user);
+        } catch {
+          localStorage.removeItem('currentUser');
+        }
+      }
+    }
   }
 }
