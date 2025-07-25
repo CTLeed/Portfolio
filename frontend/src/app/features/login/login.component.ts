@@ -29,15 +29,19 @@ export class LoginComponent {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      this.loginService.login(this.loginForm.value).subscribe({
-        next: (response) => { // Handle successful login response
-          localStorage.setItem('token', response.token); // Store the token in local storage
-          this.router.navigate(['/admin']); // Redirect to the admin page upon successful login
-    },
-    error: () => {
-        // Handle error response from the login service
-          this.error = 'Invalid username or password. Please try again.'; // Set error message
-          console.error('Login failed'); // Log to console for debugging
+      const credentials = {
+        username: this.loginForm.value.username,
+        password: this.loginForm.value.password
+      };
+      
+      this.loginService.login(credentials).subscribe({
+        next: (response) => {
+          // The service now handles token storage and user state
+          this.router.navigate(['/admin']);
+        },
+        error: (error) => {
+          this.error = 'Invalid username or password. Please try again.';
+          console.error('Login failed:', error);
         }
       });
     }
