@@ -34,14 +34,18 @@ export class LoginComponent {
         password: this.loginForm.value.password
       };
       
+      console.log('🚀 Attempting login with credentials:', credentials);
       this.loginService.login(credentials).subscribe({
         next: (response) => {
-          // The service now handles token storage and user state
-          this.router.navigate(['/admin']);
+          console.log('✅ Login successful, response:', response);
+          console.log('🔄 Navigating to /admin...');
+          this.router.navigate(['/admin']).then(success => {
+            console.log('📍 Navigation result:', success);
+          });
         },
         error: (error) => {
+          console.error('❌ Login failed:', error);
           this.error = 'Invalid username or password. Please try again.';
-          console.error('Login failed:', error);
         }
       });
     }

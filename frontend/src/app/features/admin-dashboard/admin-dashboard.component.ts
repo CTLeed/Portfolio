@@ -31,6 +31,7 @@ export class AdminDashboardComponent implements OnInit {
   selectedProject: Project | null = null;
 
   constructor() {
+    console.log('🏗️ AdminDashboardComponent constructor called');
     this.projectForm = this.fb.group({
       name: ['', Validators.required],
       role: ['', Validators.required],
@@ -42,35 +43,43 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('🎯 AdminDashboardComponent ngOnInit called');
     this.loadData();
   }
 
   loadData(): void {
+    console.log('🔍 Testing projects endpoint...');
     this.adminService.getProjects().subscribe({
       next: (projects) => {
+        console.log('✅ Projects loaded successfully:', projects);
         this.projects = projects;
+        
+        // Only proceed to next request if this one succeeds
+        console.log('🔍 Testing messages endpoint...');
+        this.adminService.getMessages().subscribe({
+          next: (messages) => {
+            console.log('✅ Messages loaded successfully:', messages);
+            this.messages = messages;
+            
+            // Only proceed to about if messages succeed
+            console.log('🔍 Testing about endpoint...');
+            this.adminService.getAbout().subscribe({
+              next: (about) => {
+                console.log('✅ About loaded successfully:', about);
+                this.aboutContent = about.content;
+              },
+              error: (error) => {
+                console.error('❌ Error loading about content:', error);
+              }
+            });
+          },
+          error: (error) => {
+            console.error('❌ Error loading messages:', error);
+          }
+        });
       },
       error: (error) => {
-        console.error('Error loading projects:', error);
-      }
-    });
-
-    this.adminService.getMessages().subscribe({
-      next: (messages) => {
-        console.log("Messages from backend: ", messages);
-        this.messages = messages;
-      },
-      error: (error) => {
-        console.error('Error loading messages:', error);
-      }
-    });
-
-    this.adminService.getAbout().subscribe({
-      next: (about) => {
-        this.aboutContent = about.content;
-      },
-      error: (error) => {
-        console.error('Error loading about content:', error);
+        console.error('❌ Error loading projects:', error);
       }
     });
   }
