@@ -18,38 +18,22 @@ export class LoginService {
   }
 
   login(credentials: LoginCredentials): Observable<LoginResponse> {
-    const url = `${this.apiUrl}/login`;
-    console.log('🌐 Making login request to:', url);
-    console.log('📤 Sending credentials:', credentials);
-    console.log('📤 Credentials type:', typeof credentials);
-    console.log('📤 Credentials JSON:', JSON.stringify(credentials));
-    
-    const headers = { 'Content-Type': 'application/json' };
-    console.log('📤 Request headers:', headers);
-    
-    return this.http.post<LoginResponse>(url, credentials, { headers }).pipe(
-      tap({
-        next: (response) => {
-          console.log('✅ Login response received:', response);
-          if (response.token && typeof window !== 'undefined') {
-            localStorage.setItem('token', response.token);
-            // You might want to decode the JWT to get user info
-            // For now, just set a basic user object
-            const user: AuthUser = {
-              id: 1,
-              username: credentials.username
-            };
-            this.currentUserSubject.next(user);
-            if (window.localStorage) {
-              localStorage.setItem('currentUser', JSON.stringify(user));
-            }
+    return this.http.post<LoginResponse>(`${this.apiUrl}/login`, null, {
+      params: credentials
+    }).pipe(
+      tap(response => {
+        if (response.token && typeof window !== 'undefined') {
+          localStorage.setItem('token', response.token);
+          // You might want to decode the JWT to get user info
+          // For now, just set a basic user object
+          const user: AuthUser = {
+            id: 1,
+            username: credentials.username
+          };
+          this.currentUserSubject.next(user);
+          if (window.localStorage) {
+            localStorage.setItem('currentUser', JSON.stringify(user));
           }
-        },
-        error: (error) => {
-          console.error('❌ Login request failed:', error);
-          console.error('❌ Error status:', error.status);
-          console.error('❌ Error message:', error.message);
-          console.error('❌ Error body:', error.error);
         }
       })
     );
