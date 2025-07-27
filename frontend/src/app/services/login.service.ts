@@ -18,9 +18,7 @@ export class LoginService {
   }
 
   login(credentials: LoginCredentials): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.apiUrl}/login`, null, {
-      params: credentials
-    }).pipe(
+    return this.http.post<LoginResponse>(`${this.apiUrl}/login`, credentials).pipe(
       tap(response => {
         if (response.token && typeof window !== 'undefined') {
           localStorage.setItem('token', response.token);
